@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" th:replace="~{base::layout(~{::title},~{::body})}">
+<head>
+<!--    <meta charset="UTF-8">-->
+    <title>Login</title>
+</head>
+<body>
+<section>
+    <div class="container mt-2 mb-2">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <!-- Card Header -->
+                    <div class="card-header text-center"><h3>Welcome back 🤗</h3></div>
+                    <th:block th:if="${param.error}">
+                        <p class="text-center text-danger fs-5">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+                    </th:block>
+
+                    <th:block th:if="${param.logout}">
+                        <p class="text-center text-success fs-5">Successfully Logged out!</p>
+                    </th:block>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <form action="loginUser" method="post">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" name="username" placeholder="xyz@gmail.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="*****">
+                            </div>
+                            <button type="submit" class="btn btn-primary col-md-12 mb-3">Login</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="fs-6">
+                            don't have an account <a href="/register" class="text-decoration-none">register</a>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" th:replace="~{base::layout(~{::title},~{::body})}">
+<head>
+    <meta charset="UTF-8">
+    <title>view Notes</title>
+</head>
+<body>
+<section>
+    <div class="container text-center p-2">
+        <h4 class="text-center" th:if="!${#lists.isEmpty(notes)}">Your Notes are safe with us!</h4>
+        <h4 class="text-center" th:if="${#lists.isEmpty(notes)}">Start Adding your notes!😊</h4>
+        <div class="mt-5" th:each="note : ${notes}">
+            <div class="row align-items-center border p-2 mb-2">
+                <div class="text-center col-md-2">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+                <div class="col-md-3 fw-bold">
+                    [[${note.title}]]
+                </div>
+                <div class="col-md-3">
+                    <span class="text-primary">PublishDate:</span> <em th:text="${#temporals.format(note.createdAt,'dd-MM-yyyy')}"></em>
+                </div>
+                <div class="col-md-4">
+                    <a th:href="@{'/user/viewNote/'+${note.id}}"><i class="fa-solid fa-eye"></i></a>
+                    <a th:href="@{'/user/editNotes/'+${note.id}}" class="btn btn-success ml-8">Edit</a>
+                    <a th:href="@{'/user/deleteNotes/'+${note.id}}" class="btn btn-danger ml-2">Delete</a>
+                </div>
+            </div>
+        </div>
+        <p class="col-md-2 text-start fw-bold">Total Notes: [[${totalNotes}]]</p>
+        <div class="row align-items-center mt-4" style="justify-content:center">
+            <nav aria-label="Page navigation example" class="col-md-auto offset-md-auto" style="height:40px">
+                <ul class="pagination">
+                    <li class="page-item" th:if="${currPage != 0}">
+                        <a class="page-link" th:href="@{'?pageNo='+${currPage-1}}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <th:block th:each="i : ${#numbers.sequence(1,totalPages)}">
+                        <li class="page-item" th:classappend="${currPage==i-1 ? 'active' : ''}"><a class="page-link" th:href="'?pageNo='+${i-1}">[[${i}]]</a></li>
+                    </th:block>
+                    <li class="page-item" th:if="${currPage+1 != totalPages}">
+                        <a class="page-link" th:href="@{'?pageNo='+${currPage+1}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+</body>
+</html>

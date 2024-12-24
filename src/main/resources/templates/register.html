@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" th:replace="~{base::layout(~{::title},~{::body})}">
+<head>
+<!--    <meta charset="UTF-8">-->
+    <title>Register</title>
+</head>
+<body>
+<section>
+    <div class="container mt-2 mb-3">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <!-- Card Header -->
+                    <div class="card-header text-center"><h3>Welcome to our family 🥳</h3></div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <th:block th:if="${session.error}">
+                            <p class="fs-5 text-center" th:classappend="${#strings.substring(session.error,0,1) == 's' ? ' text-success' : ' text-danger'} ">[[${session.error}]]</p>
+                        </th:block>
+                        <th:bock th:text="${@userUtils.removeSessionMessage()}"></th:bock>
+                        <br>
+                        <form  method="post" action="/createUser">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Full Name...">
+                               </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="xyz@gmail.com">
+                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="*****"   >
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="address" name="address">
+                            </div>
+                            <div class="mb-3">
+                                <label>Gender</label>
+                                &nbsp;
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="male-radio-btn" value="m">
+                                    <label class="form-check-label" for="male-radio-btn">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="female-radio-btn" value="f">
+                                    <label class="form-check-label" for="female-radio-btn">Female</label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary col-md-12 mb-2">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" th:replace="~{base::layout(~{::title},~{::body})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Note</title>
+</head>
+<body>
+<section>
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="card">
+                    <!-- Card Header -->
+                    <div class="card-header text-center"><h3>Your note is safe here! 📝</h3></div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                            <div class="mb-3">
+                                <h3>Title</h3>
+                                <div th:text="${note.title}"></div>
+                            </div>
+                            <div class="mb-3">
+                                <h3>Description</h3>
+                                <div th:text="${note.description}"></div>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

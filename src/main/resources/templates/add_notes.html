@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" th:replace="~{base::layout(~{::title},~{::body})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Notes</title>
+</head>
+<body>
+<section>
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="card">
+                    <!-- Card Header -->
+                    <div class="card-header text-center"><h3>Add your Notes 📝</h3></div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <form method="post" action="addNotes">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" rows="6" name="description"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-4">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
